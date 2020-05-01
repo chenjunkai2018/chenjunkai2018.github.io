@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="机器学习的基本原理 引言人类的本性是好奇，无论何时，总是对未知充满好奇，好奇就会开始去想象，人类的联想与记忆功能是智能发展的基础，没有记忆，就无从想象，没有想象，就无从创造。 人类思想的发展史，就是一个不断好奇，不断想象，不断探索的过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习的基本原理">
+<meta property="og:url" content="http://yoursite.com/2020/05/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="Matrix-11">
+<meta property="og:description" content="机器学习的基本原理 引言人类的本性是好奇，无论何时，总是对未知充满好奇，好奇就会开始去想象，人类的联想与记忆功能是智能发展的基础，没有记忆，就无从想象，没有想象，就无从创造。 人类思想的发展史，就是一个不断好奇，不断想象，不断探索的过程。">
+<meta property="article:published_time" content="2020-05-01T14:03:03.000Z">
+<meta property="article:modified_time" content="2020-05-01T15:19:01.387Z">
+<meta property="article:author" content="shiyi">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/01/机器学习的基本原理/"/>
+
+
+
+
+
+  <title>机器学习的基本原理 | Matrix-11</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Matrix-11</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shiyi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Matrix-11">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习的基本原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-01T22:03:03+08:00">
+                2020-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>机器学习的基本原理</p>
+<h4 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h4><p>人类的本性是好奇，无论何时，总是对未知充满好奇，好奇就会开始去想象，人类的联想与记忆功能是智能发展的基础，没有记忆，就无从想象，没有想象，就无从创造。</p>
+<p>人类思想的发展史，就是一个不断好奇，不断想象，不断探索的过程。</p>
+<a id="more"></a>
+
+<p>在机械时代，主宰人类知识体系的是因果论，那个时候的科学家，研究的都是自然客观规律，从牛顿三大定律，到相对论，从电学理论，到麦克斯韦方程理论，一切的一切都是确定的。万有引力，你在或者不在，它永远都在，所以因果论下的知识都是非常优雅而确定的，一个数学方程，就能搞定。</p>
+<p>当人类步入信息时代，我们的知识体系不再是优雅而确定的了，开始引入了不确定的因素，以量子理论为代表的科学，开创了信息时代，人类发明了无线电，因特网，构造了一个虚拟的信息世界，只有人类自己可以独享的一个世界。这个信息世界，无法用准确的数学方程来描述。</p>
+<p>当人类在信息世界里，产生的信息越来越多，各种文本，图片，视频在这个信息世界里自我野蛮的复制，生长，人类就步入了大数据时代，在大数据时代，因果论就显得越来越淡化了，在大数据时代，最重要的常识是相关性。人们只关心表象，不再去追究表象背后的原因。</p>
+<p>我想，智能，大概是造物主给人类埋下的最大的一个伏笔，我们探索了星辰大海，构造了一个让人眼花缭乱的信息世界，却怎么也读不懂自己。</p>
+<p>从上世纪50 年代，当时世界上最聪明的一帮科学家提出人工智能这个概念以来，人工智能经历了一次次的潮起潮落。规则学派在自我设置的各种复杂的法则里自娱自乐，面对现实的大数据却束手无措；统计学派，利用大数据，在各种数据的测试指标上一路狂奔，给各路吃瓜群众一种智能的幻象，却常常在一些样本 case 上一脸懵逼，给出匪夷所思的预测结果，令人大跌眼镜。</p>
+<p>纵然如此，放眼当今 AI 界，俨然已是统计学派的天下，所以我们所说的机器学习，其实也基本是基于统计学的机器学习。</p>
+<p>今天，我们就讲讲统计学派眼里的机器学习。</p>
+<h4 id="统计与学习"><a href="#统计与学习" class="headerlink" title="统计与学习"></a>统计与学习</h4><p>在统计学派眼里，机器学习就是一个数据拟合的过程，数据拟合的目的也是为了预测，我想，预测未来，预测未知是人类的天性，在没有统计学之前，人类已经有了各种各样的预言，有各种科幻作家写的科幻小说，也有各种末日预言，这都是一种预测行为。</p>
+<p>我们最早接触的，最简单的数据拟合就是线性拟合，在笛卡尔坐标系里，给了一定数量的 $(x,y)$，我们需要找到一条直线，能够拟合这些点，并且给出后面的预测结果，这里的 $x$ 是观测值，而 $y$ 是预测值，后来接触的多项式拟合，就是更复杂的数据拟合，再后来，我们把图像，文本，语言，视频都可以抽象成高维的数据向量，根据这些数据向量，我们可以拟合出不同的模型，这一切都可以看成是数据拟合。</p>
+<p>所以说，统计学派眼里的机器学习，是一种数据拟合，数据拟合的目的，是为了预测。所以机器学习简单来说，是一个统计，拟合，预测的过程。</p>
+<p>在统计机器学习里，有三个重要的基本原理，分别是概率论，信息论以及决策论，刚好对应了统计，拟合及预测这三块。</p>
+<h4 id="概率与分布"><a href="#概率与分布" class="headerlink" title="概率与分布"></a>概率与分布</h4><p>说到概率，大家其实都不陌生，从以前的抛硬币，丢骰子，我们就接触到了基本的概率，概率分布，大概是统计机器学习里最重要的基本原理了，虽然我们直接用到概率分布的定义或者表达很少，但是概率分布却是理解统计机器学习的基础。</p>
+<p>为什么概率分布很重要，我们却很少直接使用呢，因为真实数据的概率分布很难表达，比如我们常说的高斯分布，数学上非常优雅，可却不能真实的刻画数据的分布，尤其是在高维空间，所以我们会给出一个大概的定义 $p(x)$，表示一个观测值的概率分布，却不会给出这个分布具体的表达式。</p>
+<p>概率分布，是为了刻画一个变量取所有可能的值的概率，比如抛硬币，只有正反两种情况，所以这个变量只有正，反个值，再比如丢骰子，一般有六个面，所以这个变量只有六种可能，$p(x)$ 帮我们穷尽了一个变量取所有可能值的概率，有了这个分布，我们就能得到一个变量取某个值的概率，如果说一个变量类似孙悟空，那么这个变量的概率分布就类似如来的手掌心，不管这个变量取什么值，这个概率分布都能预测到，好像孙悟空永远都在如来的掌控之中，一个变量也永远会在一个概率分布的掌控之中。</p>
+<p>这是概率分布想做的事情，可惜，理想很丰满，现实很骨感，现实世界里，很多时候，很多变量的概率分布是无法确切知道的，我们可以知道硬币，骰子的概率分布，可是我们很难知道一支股票的涨跌分布，明年经济形势的好坏分布，或者我们现在常做的计算机视觉，我们很难确切的刻画出一类图像的分布，在高维空间里，一个高维向量的概率分布，已经超出了人类的想象，至少到目前为止，人类能够适应的最高维数是三维，超过三维的空间，人类就很难想象，对于成百上千的高维空间，人类无法刻画。</p>
+<p>概率分布，让我们明白，对于一个高维向量的分布：$p(\mathbf{x})$，我们很难准确定义，只能大概估计，这个估计的过程就是数据拟合，通过大量的数据去拟合出一个近似的分布，这是大数据时代，统计机器学习最常干的一件事。</p>
+<h4 id="信息与熵"><a href="#信息与熵" class="headerlink" title="信息与熵"></a>信息与熵</h4><p>信息熵，可能是 20 世纪最伟大的定律之一了，熵最早是用在热力学领域，刻画分子运动的，后来 Shannon 将熵和信息结合，提出了信息熵的概念，为信息传输，信息编码奠定了基础。后来，统计学派也借用信息熵的概念，来刻画概率的分布，我们现在常用的交叉熵损失函数，就是基于信息熵这个原理来的。</p>
+<p>熵，本意是用来描述一个系统的混乱无序程度的，一个系统的熵越大，意味着这个系统越混乱无序，我们做数据拟合的时候，假设我们预测的概率为 $p$, ground truth 是 $y$，那么 $p, y$ 越一致，这个系统对数据拟合的越好，那么整个系统的熵也就越小，熵最小，也对应着对整个数据拟合估计的联合概率分布最大。</p>
+<p>如果说概率分布帮我们描述了一组变量的高维空间的形态（这里的描述是抽象的，无法真的画出来），那么信息熵是告诉了我们数据拟合的目标，数据拟合，就是朝着熵减少的方向去拟合的。</p>
+<h4 id="决策与损失"><a href="#决策与损失" class="headerlink" title="决策与损失"></a>决策与损失</h4><p>正如我们前面说的，数据拟合的目的是为了预测，我们观察到新的输入变量 $x$ 的时候，希望能有一个可靠的预测值 $y$。有了预测，就涉及到一个决策，就像我们常见的癌症诊断或者雷达预警，我们需要对这个数据拟合的预测值，给出一个最终的结论，根据预测结果，我们要知道是否有癌症，或者是否有敌机来袭。</p>
+<p>一个系统的决策所带来的影响，可以由损失来决定，比如说，把一个健康的人，误诊为癌症患者，顶多让人虚惊一场，但是要是把一个癌症患者，误诊为健康的人，这个人很有可能因为得不到及时的治疗而死去，那这个代价，或者说损失就很大了。所以，最终的系统，会依据对损失的偏好，会有不同的决策方式。为了刻画这个决策系统的好坏，我们会建立一套评估机制。</p>
+<table>
+<thead>
+<tr>
+<th>–</th>
+<th>P</th>
+<th>N</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P</td>
+<td>TP</td>
+<td>FP</td>
+</tr>
+<tr>
+<td>N</td>
+<td>FN</td>
+<td>TN</td>
+</tr>
+</tbody></table>
+<p>常用的就是上面这样的评价，列方向表示真实值，行方向表示预测结果，一般来说，一个系统，总是会有 FP（误检） 和 FN （漏检），系统会根据对损失的偏好，来决定是要降低误检，还是降低漏检。</p>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>最后稍微总结一下吧，统计学派的机器学习，可以看成是一种数据拟合，本意是想拟合观测变量的概率分布，观测变量的真实分布是很难得到的，只能通过大数据统计的方式来拟合，而信息熵告诉了我们数据拟合的方向，就是朝着熵减少的方向做拟合，数据拟合的最终目的是为了预测，预测的结果提供给决策系统，决策系统根据对损失的偏好来决定该采取何种决策方式。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/01/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.jpg"
+                alt="shiyi" />
+            
+              <p class="site-author-name" itemprop="name">shiyi</p>
+              <p class="site-description motion-element" itemprop="description">Mens et Manus</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计与学习"><span class="nav-number">2.</span> <span class="nav-text">统计与学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概率与分布"><span class="nav-number">3.</span> <span class="nav-text">概率与分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信息与熵"><span class="nav-number">4.</span> <span class="nav-text">信息与熵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#决策与损失"><span class="nav-number">5.</span> <span class="nav-text">决策与损失</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shiyi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
